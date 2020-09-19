@@ -15,8 +15,8 @@ export default function Main() {
       swipe.setValue({ x: dx, y: dy });
     },
     onPanResponderRelease: () => {
-      Animated.timing(swipe, {
-        duration: 200,
+      Animated.spring(swipe, {
+        friction: 5,
         toValue: {
           x: 0,
           y: 0,

@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const RoundButton = styled.TouchableOpacity.attrs({
-  activeOpacity: 0.8,
+  activeOpacity: 0.7,
 })`
   background: white;
   justify-content: center;
