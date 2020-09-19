@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Card from '../Card';
+import Footer from '../Footer';
 import { pets } from './data';
 import { Container } from './styles';
 
@@ -10,6 +11,8 @@ export default function Main() {
       {pets.map(({ name, source }) => {
         return <Card key={name} name={name} source={source} />;
       })}
+
+      <Footer />
     </Container>
   );
 }
