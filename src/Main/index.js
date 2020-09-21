@@ -1,6 +1,6 @@
 import React, { useCallback, useRef, useState } from 'react';
 import { Animated, PanResponder } from 'react-native';
-import { height, width } from '../../utils/deviceInfo';
+import { width } from '../../utils/deviceInfo';
 
 import Card from '../Card';
 import Footer from '../Footer';
@@ -9,7 +9,6 @@ import { Container } from './styles';
 
 const ACTION_OFFSET = 90;
 const CARD_OUT_WIDTH = width + width * 0.9;
-const CARD_OUT_HEIGHT = -1 * (height + height * 0.8);
 
 export default function Main() {
   const swipe = useRef(new Animated.ValueXY()).current;
@@ -51,13 +50,21 @@ export default function Main() {
     swipe.setValue({ x: 0, y: 0 });
   }, [swipe]);
 
+  const handleCoise = useCallback(
+    (sign) => {
+      Animated.timing(swipe.x, {
+        duration: 500,
+        toValue: sign * CARD_OUT_WIDTH,
+        useNativeDriver: true,
+      }).start(transitionNext);
+    },
+    [swipe.x, transitionNext]
+  );
+
   const animatedCardStyle = {
     transform: [...swipe.getTranslateTransform()],
   };
-  console.log({
-    slicedReverse: pets.slice(0, pets.length).reverse(),
-    original: pets,
-  });
+
   return (
     <Container>
       {pets
@@ -77,7 +84,11 @@ export default function Main() {
           );
         })
         .reverse()}
-      <Footer />
+
+      <Footer
+        handleLike={() => handleCoise(1)}
+        handleNo={() => handleCoise(-1)}
+      />
     </Container>
   );
 }
