@@ -6,19 +6,21 @@ import { width, height } from '../../utils/deviceInfo';
 export const CARD_WIDTH = width * 0.9;
 export const CARD_HEIGHT = height * 0.78;
 export const VERTICAL_MARGIN = height * 0.022;
+export const CARD_BORDER_RADIUS = 20;
 
 export const Container = styled.View`
   position: absolute;
   top: ${VERTICAL_MARGIN}px;
   width: ${CARD_WIDTH}px;
   height: ${CARD_HEIGHT}px;
-  overflow: hidden;
-  border-radius: 15px;
+  border-radius: ${CARD_BORDER_RADIUS}px;
+  z-index: 10;
 `;
 
 export const Image = styled.Image`
   width: 100%;
   height: 100%;
+  border-radius: ${CARD_BORDER_RADIUS}px;
 `;
 
 export const Name = styled.Text`
@@ -39,4 +41,5 @@ export const Gradient = styled(LinearGradient).attrs({
   width: 100%;
   bottom: 0;
   height: 150px;
+  border-radius: ${CARD_BORDER_RADIUS}px;
 `;
