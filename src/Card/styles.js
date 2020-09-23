@@ -3,12 +3,17 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 import { width, height } from '../../utils/deviceInfo';
 
+export const CARD_WIDTH = width * 0.9;
+export const CARD_HEIGHT = height * 0.78;
+export const VERTICAL_MARGIN = height * 0.022;
+
 export const Container = styled.View`
-  flex: 1;
-  margin: 10px 10px 0 10px;
+  position: absolute;
+  top: ${VERTICAL_MARGIN}px;
+  width: ${CARD_WIDTH}px;
+  height: ${CARD_HEIGHT}px;
   overflow: hidden;
   border-radius: 15px;
-  z-index: 2;
 `;
 
 export const Image = styled.Image`
@@ -33,5 +38,5 @@ export const Gradient = styled(LinearGradient).attrs({
   position: absolute;
   width: 100%;
   bottom: 0;
-  height: 100px;
+  height: 150px;
 `;

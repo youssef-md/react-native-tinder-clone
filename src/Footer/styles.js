@@ -1,10 +1,12 @@
 import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
+import { VERTICAL_MARGIN } from '../Card/styles';
 
 export const Container = styled.View`
   flex-direction: row;
-  justify-content: center;
-  margin: 10px 0;
+  position: absolute;
+  bottom: ${VERTICAL_MARGIN}px;
+  z-index: -1;
 `;
 
 export const RoundButton = styled.TouchableOpacity.attrs({
