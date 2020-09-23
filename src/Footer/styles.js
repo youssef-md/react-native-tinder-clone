@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { FontAwesome } from '@expo/vector-icons';
-import { VERTICAL_MARGIN } from '../Card/styles';
+import { VERTICAL_MARGIN } from '../../utils/constants';
 
 export const Container = styled.View`
   flex-direction: row;

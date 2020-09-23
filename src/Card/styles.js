@@ -1,26 +1,22 @@
 import styled from 'styled-components/native';
 import { LinearGradient } from 'expo-linear-gradient';
 
-import { width, height } from '../../utils/deviceInfo';
-
-export const CARD_WIDTH = width * 0.9;
-export const CARD_HEIGHT = height * 0.78;
-export const VERTICAL_MARGIN = height * 0.022;
-export const CARD_BORDER_RADIUS = 20;
+import { width, height, CARD, VERTICAL_MARGIN } from '../../utils/constants';
+import Choise from '../Choise';
 
 export const Container = styled.View`
   position: absolute;
   top: ${VERTICAL_MARGIN}px;
-  width: ${CARD_WIDTH}px;
-  height: ${CARD_HEIGHT}px;
-  border-radius: ${CARD_BORDER_RADIUS}px;
+  width: ${CARD.CARD_WIDTH}px;
+  height: ${CARD.CARD_HEIGHT}px;
+  border-radius: ${CARD.CARD_BORDER_RADIUS}px;
   z-index: 10;
 `;
 
 export const Image = styled.Image`
   width: 100%;
   height: 100%;
-  border-radius: ${CARD_BORDER_RADIUS}px;
+  border-radius: ${CARD.CARD_BORDER_RADIUS}px;
 `;
 
 export const Name = styled.Text`
@@ -41,5 +37,17 @@ export const Gradient = styled(LinearGradient).attrs({
   width: 100%;
   bottom: 0;
   height: 150px;
-  border-radius: ${CARD_BORDER_RADIUS}px;
+  border-radius: ${CARD.CARD_BORDER_RADIUS}px;
+`;
+
+export const Like = styled(Choise)`
+  top: ${height * 0.12}px;
+  left: ${width * 0.1}px;
+  transform: rotate(-30deg);
+`;
+
+export const Nope = styled(Choise)`
+  top: ${height * 0.12}px;
+  right: ${width * 0.1}px;
+  transform: rotate(30deg);
 `;
