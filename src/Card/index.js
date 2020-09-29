@@ -8,8 +8,8 @@ import { Container, Image, Name, Gradient, Like, Nope } from './styles';
 export default function Card({ name, source, isFirst, swipe, ...rest }) {
   const rotate = useRef(
     swipe.x.interpolate({
-      inputRange: [-100, 0, 100],
-      outputRange: ['10deg', '0deg', '-10deg'],
+      inputRange: [-ACTION_OFFSET, 0, ACTION_OFFSET],
+      outputRange: ['15deg', '0deg', '-15deg'],
       extrapolate: 'clamp',
     })
   ).current;

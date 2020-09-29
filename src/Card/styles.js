@@ -7,15 +7,12 @@ import Choise from '../Choise';
 export const Container = styled.View`
   position: absolute;
   top: ${VERTICAL_MARGIN}px;
-  width: ${CARD.CARD_WIDTH}px;
-  height: ${CARD.CARD_HEIGHT}px;
-  border-radius: ${CARD.CARD_BORDER_RADIUS}px;
   z-index: 10;
 `;
 
 export const Image = styled.Image`
-  width: 100%;
-  height: 100%;
+  width: ${CARD.CARD_WIDTH}px;
+  height: ${CARD.CARD_HEIGHT}px;
   border-radius: ${CARD.CARD_BORDER_RADIUS}px;
 `;
 

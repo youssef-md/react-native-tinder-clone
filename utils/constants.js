@@ -11,4 +11,4 @@ export const CARD = {
 
 export const VERTICAL_MARGIN = height * 0.022;
 
-export const ACTION_OFFSET = 90;
+export const ACTION_OFFSET = 100;
