@@ -9,6 +9,7 @@ import { Container } from './styles';
 
 export default function Main() {
   const swipe = useRef(new Animated.ValueXY()).current;
+  const tiltSign = useRef(new Animated.Value(1)).current;
   const [pets, setPets] = useState(petsObj);
 
   useEffect(() => {
@@ -20,7 +21,8 @@ export default function Main() {
   const panResponder = useRef(
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderMove: (e, { dx, dy }) => {
+      onPanResponderMove: (e, { dx, dy, y0 }) => {
+        tiltSign.setValue(y0 > CARD.CARD_HEIGHT / 2 ? 1 : -1);
         swipe.setValue({ x: dx, y: dy });
       },
       onPanResponderRelease: (e, { dx, dy }) => {
@@ -80,6 +82,7 @@ export default function Main() {
               source={source}
               isFirst={isFirst}
               swipe={swipe}
+              tiltSign={tiltSign}
               {...panHandlers}
             />
           );
