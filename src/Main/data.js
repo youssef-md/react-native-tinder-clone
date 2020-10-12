@@ -1,7 +1,15 @@
 export const pets = [
   {
-    name: 'Model Golden',
-    source: require('../../assets/pet6.jpg'),
+    name: 'Cute Golden',
+    source: require('../../assets/pet1.jpg'),
+  },
+  {
+    name: 'Curious Collie',
+    source: require('../../assets/pet2.jpg'),
+  },
+  {
+    name: 'Nerd Dog',
+    source: require('../../assets/pet3.jpg'),
   },
   {
     name: 'Smiley Husky',
@@ -10,17 +18,5 @@ export const pets = [
   {
     name: 'Serious Dog',
     source: require('../../assets/pet5.jpg'),
-  },
-  {
-    name: 'Curious Collie',
-    source: require('../../assets/pet2.jpg'),
-  },
-  {
-    name: 'Puppy Dog',
-    source: require('../../assets/pet1.jpg'),
-  },
-  {
-    name: 'Nerd Dog',
-    source: require('../../assets/pet3.jpg'),
   },
 ];

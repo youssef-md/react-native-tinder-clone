@@ -24,8 +24,6 @@ export default function Card({
     extrapolate: 'clamp',
   });
 
-  console.log({ rotate });
-
   const nopeOpacity = swipe.x.interpolate({
     inputRange: [-ACTION_OFFSET, -10],
     outputRange: [1, 0],
@@ -35,7 +33,6 @@ export default function Card({
   const animatedCardStyle = {
     transform: [...swipe.getTranslateTransform(), { rotate: rotate }],
   };
-
   return (
     <Container
       as={Animated.View}

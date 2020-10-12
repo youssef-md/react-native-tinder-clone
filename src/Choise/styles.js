@@ -22,18 +22,17 @@ const choices = {
 export const Container = styled.View`
   position: absolute;
   border-width: 6px;
-  width: 150px;
-  padding: 5px 0;
+  padding: 5px 10px;
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.2);
   ${(props) => choices[props.type].container}
 `;
 
 export const Text = styled.Text`
-  font-size: 42px;
+  font-size: 45px;
   text-align: center;
   font-weight: bold;
   text-transform: uppercase;
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   ${(props) => choices[props.type].text}
 `;
