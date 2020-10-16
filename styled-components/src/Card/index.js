@@ -33,6 +33,7 @@ export default function Card({
   const animatedCardStyle = {
     transform: [...swipe.getTranslateTransform(), { rotate: rotate }],
   };
+
   return (
     <Container
       as={Animated.View}

@@ -22,6 +22,7 @@ export default function Main() {
     PanResponder.create({
       onMoveShouldSetPanResponder: () => true,
       onPanResponderMove: (e, { dx, dy, y0 }) => {
+        // 1: sentido horário | -1: sentido anti-horário
         tiltSign.setValue(y0 > CARD.CARD_HEIGHT / 2 ? 1 : -1);
         swipe.setValue({ x: dx, y: dy });
       },
