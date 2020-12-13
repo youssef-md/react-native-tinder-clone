@@ -1,29 +1,24 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Animated, PanResponder, View } from 'react-native';
 
-import { styles } from './styles';
-import { pets as petsObj } from './data';
-import { ACTION_OFFSET, CARD } from '../../utils/constants';
-
 import Card from '../Card';
 import Footer from '../Footer';
+import { ACTION_OFFSET, CARD } from '../utils/constants';
+import { pets as petsArray } from './data';
+import { styles } from './styles';
 
 export default function Main() {
-  const [pets, setPets] = useState(petsObj);
-
+  const [pets, setPets] = useState(petsArray);
   const swipe = useRef(new Animated.ValueXY()).current;
   const tiltSign = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    if (pets.length === 0) {
-      setPets(petsObj);
+    if (!pets.length) {
+      setPets(petsArray);
     }
-  }, [pets]);
+  }, [pets.length]);
 
   const panResponder = PanResponder.create({
-    // Por que criar PanResponder aqui ao invés de dentro do Card?
-    // -> Porque aqui ele só será criado 1 vez para N Cards que existirem
-
     onMoveShouldSetPanResponder: () => true,
     onPanResponderMove: (_, { dx, dy, y0 }) => {
       swipe.setValue({ x: dx, y: dy });
@@ -31,65 +26,68 @@ export default function Main() {
     },
     onPanResponderRelease: (_, { dx, dy }) => {
       const direction = Math.sign(dx);
-      const userAction = Math.abs(dx) > ACTION_OFFSET;
+      const isActionActive = Math.abs(dx) > ACTION_OFFSET;
 
-      if (userAction) {
+      if (isActionActive) {
         Animated.timing(swipe, {
           duration: 200,
           toValue: {
-            x: direction * CARD.OUT_OF_VIEW,
+            x: direction * CARD.OUT_OF_SCREEN,
             y: dy,
           },
           useNativeDriver: true,
-        }).start(transitionNext);
+        }).start(removeTopCard);
       } else {
         Animated.spring(swipe, {
-          friction: 5,
           toValue: {
             x: 0,
             y: 0,
           },
           useNativeDriver: true,
+          friction: 5,
         }).start();
       }
     },
   });
 
-  const transitionNext = useCallback(() => {
+  const removeTopCard = useCallback(() => {
     setPets((prevState) => prevState.slice(1));
     swipe.setValue({ x: 0, y: 0 });
-  }, []);
+  }, [swipe]);
 
-  const handleChoise = useCallback((direction) => {
-    Animated.timing(swipe.x, {
-      toValue: direction * CARD.OUT_OF_VIEW,
-      duration: 400,
-      useNativeDriver: true,
-    }).start(transitionNext);
-  }, []);
+  const handleChoice = useCallback(
+    (direction) => {
+      Animated.timing(swipe.x, {
+        toValue: direction * CARD.OUT_OF_SCREEN,
+        duration: 400,
+        useNativeDriver: true,
+      }).start(removeTopCard);
+    },
+    [removeTopCard, swipe.x]
+  );
 
   return (
     <View style={styles.container}>
       {pets
         .map(({ name, source }, index) => {
           const isFirst = index === 0;
-          const panHandlers = isFirst ? panResponder.panHandlers : {};
+          const dragHandlers = isFirst ? panResponder.panHandlers : {};
 
           return (
             <Card
               key={name}
               name={name}
               source={source}
-              swipe={swipe}
               isFirst={isFirst}
+              swipe={swipe}
               tiltSign={tiltSign}
-              {...panHandlers}
+              {...dragHandlers}
             />
           );
         })
         .reverse()}
 
-      <Footer handleChoise={handleChoise} />
+      <Footer handleChoice={handleChoice} />
     </View>
   );
 }

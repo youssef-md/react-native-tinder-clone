@@ -1,13 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
-  roundButton: {
-    backgroundColor: '#fff',
+  container: {
     width: 70,
     height: 70,
+    backgroundColor: '#fff',
+    elevation: 5,
     borderRadius: 40,
     justifyContent: 'center',
     alignItems: 'center',
-    elevation: 5,
   },
 });

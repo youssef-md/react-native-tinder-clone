@@ -1,9 +1,10 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-import { COLORS } from '../../utils/constants';
+import { Text, View } from 'react-native';
+import { COLORS } from '../utils/constants';
+
 import { styles } from './styles';
 
-export default function Choise({ type }) {
+export default function Choice({ type }) {
   const color = COLORS[type];
 
   return (

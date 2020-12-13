@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { CARD } from '../../utils/constants';
+import { CARD } from '../utils/constants';
 
 export const styles = StyleSheet.create({
   container: {
@@ -16,7 +16,7 @@ export const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     right: 0,
-    height: 180,
+    height: 160,
     borderRadius: CARD.BORDER_RADIUS,
   },
   name: {
@@ -31,11 +31,11 @@ export const styles = StyleSheet.create({
     position: 'absolute',
     top: 100,
   },
-  choiceNope: {
+  likeContainer: {
     left: 45,
     transform: [{ rotate: '-30deg' }],
   },
-  choiceLike: {
+  nopeContainer: {
     right: 45,
     transform: [{ rotate: '30deg' }],
   },
