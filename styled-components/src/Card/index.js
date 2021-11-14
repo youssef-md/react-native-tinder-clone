@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { Animated } from 'react-native';
 
 import { ACTION_OFFSET } from '../../utils/constants';
@@ -11,8 +11,13 @@ export default function Card({
   isFirst,
   swipe,
   tiltSign,
+  setCurrentPet,
   ...rest
 }) {
+  useEffect(() => {
+    setCurrentPet(name);
+  }, [name])
+
   const rotate = Animated.multiply(swipe.x, tiltSign).interpolate({
     inputRange: [-ACTION_OFFSET, 0, ACTION_OFFSET],
     outputRange: ['8deg', '0deg', '-8deg'],
