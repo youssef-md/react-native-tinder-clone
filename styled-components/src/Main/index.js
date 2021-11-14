@@ -8,6 +8,7 @@ import { pets as petsObj } from './data';
 import { Container } from './styles';
 
 export default function Main() {
+  const [currentPet, setCurrentPet] = useState("");
   const swipe = useRef(new Animated.ValueXY()).current;
   const tiltSign = useRef(new Animated.Value(1)).current;
   const [pets, setPets] = useState(petsObj);
@@ -17,6 +18,13 @@ export default function Main() {
       setPets(petsObj);
     }
   }, [pets]);
+
+  const swipeLeft = (petName) => {
+    console.warn("swipe left",petName);
+  }
+  const swipeRight = (petName) => {
+    console.warn("swipe right",petName);
+  }
 
   const panResponder = useRef(
     PanResponder.create({
@@ -31,6 +39,7 @@ export default function Main() {
         const userAction = Math.abs(dx) > ACTION_OFFSET;
 
         if (userAction) {
+          dx > 0 ? swipeRight(currentPet) : swipeLeft(currentPet);
           Animated.timing(swipe, {
             duration: 200,
             toValue: {
@@ -84,6 +93,7 @@ export default function Main() {
               isFirst={isFirst}
               swipe={swipe}
               tiltSign={tiltSign}
+              setCurrentPet={setCurrentPet}
               {...panHandlers}
             />
           );
